@@ -24,11 +24,11 @@ const useCountStore = create<{ count: number; inc: () => void }>((set) => ({
   inc: () => set((state) => ({ count: state.count + 1 })),
 }));
 
-const doubleCountStore = derive<number>((get) => get(countStore).count * 2);
+const doubleCountStore = derive<number>((get) => get(useCountStore).count * 2);
 const useDoubleCountStore = () => useStore(doubleCountStore);
 
 const Counter = () => {
-  const { count, inc } = useDoubleCountStore();
+  const { count, inc } = useCountStore();
   const doubleCount = useDoubleCountStore();
   return (
     <div>
