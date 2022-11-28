@@ -16,16 +16,20 @@ npm install zustand derive-zustand
 ## Usage
 
 ```tsx
-import { createStore, useStore } from 'zustand';
+import create, { useStore } from 'zustand';
 import { derive } from 'derive-zustand';
 
-const countStore = createStore(() => 0);
+const useCountStore = create<{ count: number; inc: () => void }>((set) => ({
+  count: 0,
+  inc: () => set((state) => ({ count: state.count + 1 })),
+}));
+
 const doubleCountStore = derive<number>((get) => get(countStore) * 2);
+const useDoubleCountStore = () => useStore(doubleCountStore);
 
 const Counter = () => {
-  const count = useStore(countStore);
-  const doubleCount = useStore(doubleCountStore);
-  const inc = () => countStore.setState((c) => c + 1);
+  const { count, inc } = useDoubleCountStore();
+  const doubleCount = useDoubleCountStore();
   return (
     <div>
       <div>count: {count}</div>
@@ -51,3 +55,4 @@ and open <http://localhost:8080> in your web browser.
 
 You can also try them in codesandbox.io:
 [01](https://codesandbox.io/s/github/dai-shi/derive-zustand/tree/main/examples/01_typescript)
+[02](https://codesandbox.io/s/github/dai-shi/derive-zustand/tree/main/examples/02_animals)
