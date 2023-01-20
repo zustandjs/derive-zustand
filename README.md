@@ -1,6 +1,6 @@
 # derive-zustand
 
-[![CI](https://img.shields.io/github/workflow/status/dai-shi/derive-zustand/CI)](https://github.com/dai-shi/derive-zustand/actions?query=workflow%3ACI)
+[![CI](https://img.shields.io/github/actions/workflow/status/dai-shi/derive-zustand/ci.yml?branch=main)](https://github.com/dai-shi/derive-zustand/actions?query=workflow%3ACI)
 [![npm](https://img.shields.io/npm/v/derive-zustand)](https://www.npmjs.com/package/derive-zustand)
 [![size](https://img.shields.io/bundlephobia/minzip/derive-zustand)](https://bundlephobia.com/result?p=derive-zustand)
 [![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
