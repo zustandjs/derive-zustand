@@ -65,6 +65,9 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
   const store = {
     getState,
     subscribe,
+    getInitialState: () => {
+      throw new Error('getInitialState is not available in derived store');
+    },
     setState: () => {
       throw new Error('setState is not available in derived store');
     },
