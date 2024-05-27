@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { createStore, useStore } from 'zustand';
 import { derive } from 'derive-zustand';
 

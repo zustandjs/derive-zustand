@@ -1,6 +1,4 @@
-import React from 'react';
-
-import create, { useStore } from 'zustand';
+import { create, useStore } from 'zustand';
 import { derive } from 'derive-zustand';
 
 type AnimalStore = {

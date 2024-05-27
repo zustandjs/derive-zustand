@@ -35,6 +35,7 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
       return store.getState();
     };
     state = deriveFn(get as unknown as Getter<State>);
+    invalidated = false;
     if (listeners.size) {
       subscriptions.forEach((unsubscribe, store) => {
         if (dependencies.has(store)) {
@@ -47,7 +48,6 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
       dependencies.forEach((store) => {
         subscriptions.set(store, store.subscribe(invalidate));
       });
-      invalidated = false;
     }
     return state;
   };
@@ -65,6 +65,9 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
   const store = {
     getState,
     subscribe,
+    getInitialState: () => {
+      throw new Error('getInitialState is not available in derived store');
+    },
     setState: () => {
       throw new Error('setState is not available in derived store');
     },
