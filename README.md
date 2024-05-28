@@ -16,7 +16,7 @@ npm install zustand derive-zustand
 ## Usage
 
 ```tsx
-import create, { useStore } from 'zustand';
+import { create, useStore } from 'zustand';
 import { derive } from 'derive-zustand';
 
 const useCountStore = create<{ count: number; inc: () => void }>((set) => ({
