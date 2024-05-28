@@ -54,5 +54,5 @@ PORT=8080 pnpm run examples:01_counter
 and open <http://localhost:8080> in your web browser.
 
 You can also try them directly:
-[01](https://stackblitz.com/github/dai-shi/derive-zustand/tree/main/examples/01_counter)
-[02](https://stackblitz.com/github/dai-shi/derive-zustand/tree/main/examples/02_animals)
+[01](https://stackblitz.com/github/zustandjs/derive-zustand/tree/main/examples/01_counter)
+[02](https://stackblitz.com/github/zustandjs/derive-zustand/tree/main/examples/02_animals)
