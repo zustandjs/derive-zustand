@@ -48,7 +48,7 @@ The [examples](examples) folder contains working examples.
 You can run one of them with
 
 ```bash
-PORT=8080 pnpm run examples:01_typescript
+PORT=8080 pnpm run examples:01_counter
 ```
 
 and open <http://localhost:8080> in your web browser.
