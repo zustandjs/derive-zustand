@@ -48,11 +48,11 @@ The [examples](examples) folder contains working examples.
 You can run one of them with
 
 ```bash
-PORT=8080 yarn run examples:01_typescript
+PORT=8080 pnpm run examples:01_typescript
 ```
 
 and open <http://localhost:8080> in your web browser.
 
-You can also try them in codesandbox.io:
-[01](https://codesandbox.io/s/github/dai-shi/derive-zustand/tree/main/examples/01_typescript)
-[02](https://codesandbox.io/s/github/dai-shi/derive-zustand/tree/main/examples/02_animals)
+You can also try them directly:
+[01](https://stackblitz.com/github/dai-shi/derive-zustand/tree/main/examples/01_counter)
+[02](https://stackblitz.com/github/dai-shi/derive-zustand/tree/main/examples/02_animals)
