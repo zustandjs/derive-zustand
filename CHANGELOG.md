@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- fix: invalidating logic #6
+
 ## [0.1.0] - 2024-05-28
 
 ### Changed
