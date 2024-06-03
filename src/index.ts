@@ -14,6 +14,7 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
   const listeners = new Set<Listener>();
   const subscriptions = new Map<AnyStore, () => void>();
   let state: State | undefined;
+  let dependencies: Map<AnyStore, unknown> | undefined;
   let invalidated = true;
   const invalidate = () => {
     if (invalidated) {
@@ -26,30 +27,40 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
     if (!invalidated) {
       return state as State;
     }
-    const dependencies = new Set<AnyStore>();
-    const get = <T>(store?: StoreApi<T>) => {
-      if (!store) {
-        return state;
-      }
-      dependencies.add(store);
-      return store.getState();
-    };
-    state = deriveFn(get as unknown as Getter<State>);
-    invalidated = false;
+    if (
+      !dependencies ||
+      Array.from(dependencies).some(
+        ([store, value]) => !Object.is(store.getState(), value),
+      )
+    ) {
+      const newDependencies = new Map<AnyStore, unknown>();
+      const get = <T>(store?: StoreApi<T>) => {
+        if (!store) {
+          return state;
+        }
+        const s = store.getState();
+        newDependencies.set(store, s);
+        return s;
+      };
+      state = deriveFn(get as unknown as Getter<State>);
+      dependencies = newDependencies;
+    }
     if (listeners.size) {
+      const deps = new Set(dependencies.keys());
       subscriptions.forEach((unsubscribe, store) => {
-        if (dependencies.has(store)) {
-          dependencies.delete(store);
+        if (deps.has(store)) {
+          deps.delete(store);
         } else {
           unsubscribe();
           subscriptions.delete(store);
         }
       });
-      dependencies.forEach((store) => {
+      deps.forEach((store) => {
         subscriptions.set(store, store.subscribe(invalidate));
       });
+      invalidated = false;
     }
-    return state;
+    return state as State;
   };
   const subscribe = (listener: Listener): (() => void) => {
     listeners.add(listener);
