@@ -42,7 +42,7 @@ export function derive<State>(deriveFn: DeriveFn<State>): StoreApi<State> {
         newDependencies.set(store, s);
         return s;
       };
-      state = deriveFn(get as unknown as Getter<State>);
+      state = deriveFn(get);
       dependencies = newDependencies;
     }
     if (listeners.size) {
