@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-10-18
+
+### Added
+
+- getInitialState implementation #9
+
 ## [0.1.1] - 2024-06-03
 
 ### Changed
